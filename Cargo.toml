@@ -1,0 +1,21 @@
+[package]
+name = "simplefb"
+version = "0.1.0"
+description = "A Simple Framebuffer Console Library for Embedded Systems"
+documentation = "https://docs.rs/simplefb"
+keywords = ["arceos", "os", "hal", "embedded", "aarch64"]
+categories = ["embedded", "no-std", "hardware-support", "os"]
+edition = "2024"
+authors = [
+    "Debin Luo <luodeb@outlook.com>",
+    "KylinSoft Co., Ltd. <https://www.kylinos.cn/>"
+    ]
+license = "Apache-2.0"
+homepage = "https://github.com/kylin-x-kernel/simplefb"
+repository = "https://github.com/kylin-x-kernel/simplefb"
+
+[dependencies]
+font8x8 = { version = "0.3", default-features = false, features = ["unicode"] }
+kspin = "0.1"
+lazyinit = "0.2"
+
