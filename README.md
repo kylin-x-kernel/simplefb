@@ -41,7 +41,11 @@ use simplefb::LogBuffer;
 
 static mut LOG_STORAGE: [u8; 4096] = [0; 4096];
 
-let log_buffer = LogBuffer::new(&mut LOG_STORAGE as *mut _);
+// 注意：此代码用于单线程嵌入式环境
+// 在访问 static mut 时需要 unsafe 块
+let log_buffer = unsafe {
+    LogBuffer::new(&mut LOG_STORAGE as *mut _)
+};
 ```
 
 ### 3. 创建控制台实例
@@ -135,7 +139,10 @@ fn init_console() -> SimpleFbConsole {
         font_height: 16,
     };
     
-    let log_buffer = LogBuffer::new(&mut LOG_STORAGE as *mut _);
+    // 注意：在单线程嵌入式环境中使用
+    let log_buffer = unsafe {
+        LogBuffer::new(&mut LOG_STORAGE as *mut _)
+    };
     
     let mut console = SimpleFbConsole::new(config, log_buffer);
     
